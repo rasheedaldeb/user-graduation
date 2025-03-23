@@ -19,10 +19,12 @@ const Filters = () => {
           class="text-secondary border-primary block w-full rounded-lg border-b p-2.5 text-xl"
         >
           <option selected>اختر المدينة</option>
-          <option value="US">دمشق</option>
-          <option value="CA">حلب</option>
-          <option value="FR">حماة</option>
-          <option value="DE">اللاذقية</option>
+          <option value="سوريا-دمشق">سوريا-دمشق</option>
+          <option value="سوريا-حلب">سوريا-حلب</option>
+          <option value="سوريا-حماة">سوريا-حماة</option>
+          <option value="سوريا-اللاذقية">سوريا-اللاذقية</option>
+          <option value="سوريا-طرطوس">سوريا-طرطوس</option>
+          <option value="سوريا-الحسكة">سوريا-الحسكة</option>
         </select>
       </div>
       <div
@@ -37,10 +39,11 @@ const Filters = () => {
           class="text-secondary block w-full rounded-lg border-b p-2.5 text-xl"
         >
           <option selected>اختر السعر المناسب</option>
-          <option value="US"> 50$ -> 100$</option>
-          <option value="CA">100$ -> 300$</option>
-          <option value="FR">300$ -> 500$</option>
-          <option value="DE">اكثر من 500$</option>
+          <option value="100"> 100$</option>
+          <option value="150">150$</option>
+          <option value="300">300$</option>
+          <option value="800">800$</option>
+          <option value="1000">1000$</option>
         </select>
       </div>
       <div

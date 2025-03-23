@@ -2,7 +2,7 @@ import ProfileSection from "../Components/ProfileSection";
 
 const Profile = () => {
   return (
-    <div className="bg-gray-100">
+    <div className="min-h-screen bg-gray-100">
       <ProfileSection />
     </div>
   );

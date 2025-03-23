@@ -23,6 +23,7 @@ const NavBar = () => {
         setIsLoggingOut(false);
         console.log(res);
         localStorage.removeItem("token");
+        alert(res.data.message);
         navigate("/signin");
       })
       .catch((err) => {

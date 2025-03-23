@@ -10,84 +10,48 @@ import "swiper/css/thumbs";
 import "./SingleEstateSectionImages.css";
 // import required modules
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
-const SingleEstateSection = () => {
+import { Oval } from "react-loader-spinner";
+const SingleEstateSection = ({ images, isLoading, error }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <section className="estate-images mt-10 flex h-full w-[45%] flex-col items-center gap-12">
       {/* Estate images */}
-      <Swiper
-        style={{
-          "--swiper-navigation-color": "#fff",
-          "--swiper-pagination-color": "#fff",
-        }}
-        spaceBetween={10}
-        navigation={true}
-        loop={true}
-        thumbs={{ swiper: thumbsSwiper }}
-        modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper2 mx-auto flex h-[300px] w-full items-center justify-center"
-      >
-        <SwiperSlide className="h-[50%] w-[25%] bg-cover bg-center">
-          <img
-            src="https://swiperjs.com/demos/images/nature-1.jpg"
-            className="h-full w-full rounded-lg object-cover"
+      {isLoading ? (
+        <div className="flex items-center justify-center">
+          <Oval
+            visible={true}
+            height="40"
+            width="40"
+            color="rgb(23, 43, 78)"
+            ariaLabel="oval-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
           />
-        </SwiperSlide>
-        <SwiperSlide className="h-[50%] w-[25%] bg-cover bg-center">
-          <img
-            src="https://swiperjs.com/demos/images/nature-2.jpg"
-            className="h-full w-full rounded-lg object-cover"
-          />
-        </SwiperSlide>
-        <SwiperSlide className="h-[50%] w-[25%] bg-cover bg-center">
-          <img
-            src="https://swiperjs.com/demos/images/nature-3.jpg"
-            className="h-full w-full rounded-lg object-cover"
-          />
-        </SwiperSlide>
-        <SwiperSlide className="h-[50%] w-[25%] bg-cover bg-center">
-          <img
-            src="https://swiperjs.com/demos/images/nature-4.jpg"
-            className="h-full w-full rounded-lg object-cover"
-          />
-        </SwiperSlide>
-        <SwiperSlide className="h-[50%] w-[25%] bg-cover bg-center">
-          <img
-            src="https://swiperjs.com/demos/images/nature-5.jpg"
-            className="h-full w-full rounded-lg object-cover"
-          />
-        </SwiperSlide>
-        <SwiperSlide className="h-[50%] w-[25%] bg-cover bg-center">
-          <img
-            src="https://swiperjs.com/demos/images/nature-6.jpg"
-            className="h-full w-full rounded-lg object-cover"
-          />
-        </SwiperSlide>
-        <SwiperSlide className="h-[50%] w-[25%] bg-cover bg-center">
-          <img
-            src="https://swiperjs.com/demos/images/nature-7.jpg"
-            className="h-full w-full rounded-lg object-cover"
-          />
-        </SwiperSlide>
-        <SwiperSlide className="h-[50%] w-[25%] bg-cover bg-center">
-          <img
-            src="https://swiperjs.com/demos/images/nature-8.jpg"
-            className="h-full w-full rounded-lg object-cover"
-          />
-        </SwiperSlide>
-        <SwiperSlide className="h-[50%] w-[25%] rounded-lg bg-cover bg-center">
-          <img
-            src="https://swiperjs.com/demos/images/nature-9.jpg"
-            className="h-full w-full rounded-lg object-cover"
-          />
-        </SwiperSlide>
-        <SwiperSlide className="h-[50%] w-[25%] bg-cover bg-center">
-          <img
-            src="https://swiperjs.com/demos/images/nature-10.jpg"
-            className="h-full w-full rounded-lg object-cover"
-          />
-        </SwiperSlide>
-      </Swiper>
+        </div>
+      ) : (
+        <Swiper
+          style={{
+            "--swiper-navigation-color": "#fff",
+            "--swiper-pagination-color": "#fff",
+          }}
+          spaceBetween={10}
+          navigation={true}
+          loop={true}
+          thumbs={{ swiper: thumbsSwiper }}
+          modules={[FreeMode, Navigation, Thumbs]}
+          className="mySwiper2 mx-auto flex h-[300px] w-full items-center justify-center"
+        >
+          {images.map((item) => (
+            <SwiperSlide className="h-[50%] w-[25%] bg-cover bg-center">
+              <img
+                src={`${import.meta.env.VITE_API_URL}${item.imageUrl}`}
+                alt="image"
+                className="h-full w-full rounded-lg object-cover"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
       <Swiper
         onSwiper={setThumbsSwiper}
         spaceBetween={10}
@@ -97,68 +61,21 @@ const SingleEstateSection = () => {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper h-[200px] w-full"
       >
-        <SwiperSlide>
-          <img
-            src="https://swiperjs.com/demos/images/nature-1.jpg"
-            className="rounded-lg"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://swiperjs.com/demos/images/nature-2.jpg"
-            className="rounded-lg"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://swiperjs.com/demos/images/nature-3.jpg"
-            className="rounded-lg"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://swiperjs.com/demos/images/nature-4.jpg"
-            className="rounded-lg"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://swiperjs.com/demos/images/nature-5.jpg"
-            className="rounded-lg"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://swiperjs.com/demos/images/nature-6.jpg"
-            className="rounded-lg"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://swiperjs.com/demos/images/nature-7.jpg"
-            className="rounded-lg"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://swiperjs.com/demos/images/nature-8.jpg"
-            className="rounded-lg"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://swiperjs.com/demos/images/nature-9.jpg"
-            className="rounded-lg"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://swiperjs.com/demos/images/nature-10.jpg"
-            className="rounded-lg"
-          />
-        </SwiperSlide>
+        {images.map((item) => (
+          <SwiperSlide>
+            <img
+              src={`${import.meta.env.VITE_API_URL}${item.imageUrl}`}
+              className="rounded-lg"
+              alt="image"
+            />
+          </SwiperSlide>
+        ))}
       </Swiper>
-      {/* estate content */}
+      {error && (
+        <div className="flex items-center justify-center text-xl font-bold text-red-600">
+          {error}
+        </div>
+      )}
     </section>
   );
 };

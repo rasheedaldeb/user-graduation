@@ -80,7 +80,12 @@ const EstatesCards = () => {
             ))
           ) : (
             <div className="flex items-center justify-center">
-              <p className="text-secondary text-xl">لايوجد شركات</p>
+              <p className="text-secondary text-xl">لايوجد منشورات</p>
+            </div>
+          )}
+          {error && (
+            <div className="flex items-center justify-center text-xl text-red-500">
+              {error}
             </div>
           )}
         </Swiper>

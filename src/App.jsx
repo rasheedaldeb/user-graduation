@@ -22,9 +22,12 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/profile" element={<Profile />} />
-            <Route path="/company-profile" element={<CompanyProfile />} />
+            <Route
+              path="/company-profile/:companyId"
+              element={<CompanyProfile />}
+            />
             <Route path="/favorite" element={<Favorite />} />
-            <Route path="/single-estate" element={<SingleEstate />} />
+            <Route path="/single-estate/:postId" element={<SingleEstate />} />
             <Route path="/complaints" element={<Complaints />} />
           </Route>
         </Routes>
