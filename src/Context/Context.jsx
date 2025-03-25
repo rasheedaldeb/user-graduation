@@ -6,6 +6,7 @@ const ContextProvider = ({ children }) => {
   const [postsType, setPostsType] = useState("all");
   const [selectValue, setSelectValue] = useState("");
   const [companyWebsite, setCompanyWebsite] = useState("");
+  const [removed, setRemoved] = useState(false);
   return (
     <StatesContext.Provider
       value={{
@@ -15,6 +16,8 @@ const ContextProvider = ({ children }) => {
         setSelectValue,
         companyWebsite,
         setCompanyWebsite,
+        removed,
+        setRemoved,
       }}
     >
       {children}

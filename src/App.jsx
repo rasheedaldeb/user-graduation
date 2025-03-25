@@ -10,6 +10,7 @@ import SingleEstate from "./Pages/SingleEstate";
 import CompanyProfile from "./Pages/CompanyProfile";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import Complaints from "./Pages/Complaints";
+import ReservedPosts from "./Pages/ReservedPosts";
 import { ContextProvider } from "./Context/Context";
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/favorite" element={<Favorite />} />
             <Route path="/single-estate/:postId" element={<SingleEstate />} />
             <Route path="/complaints" element={<Complaints />} />
+            <Route path="/reserved-posts" element={<ReservedPosts />} />
           </Route>
         </Routes>
       </ContextProvider>

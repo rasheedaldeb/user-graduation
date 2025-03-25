@@ -6,16 +6,18 @@ import "swiper/css";
 import "swiper/css/navigation";
 // import required modules
 import { Navigation } from "swiper/modules";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 import FavoriteCard from "./FavoriteCard";
 import SectionHeader from "./SectionHeader";
+import { StatesContext } from "../Context/Context";
 // import required modules
 const FavoriteEstates = () => {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
+  const { removed } = useContext(StatesContext);
   // fetch favorite states
   const [favoritePosts, setFavoritePosts] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
@@ -50,9 +52,9 @@ const FavoriteEstates = () => {
       }
     };
     fetchFavorite();
-  }, []);
+  }, [removed]);
   return (
-    <div className="flex min-h-screen flex-col gap-10 pt-32">
+    <div className="flex min-h-screen flex-col gap-10 pt-32 pb-20">
       <SectionHeader title="المنشورات المفضلة" />
       {isFetching ? (
         <div className="flex items-center justify-center">
@@ -74,6 +76,7 @@ const FavoriteEstates = () => {
           navigation={true}
           modules={[Navigation]}
           className="mySwiper"
+          dir="rtl"
         >
           {favoritePosts.length !== 0 ? (
             favoritePosts.map((item) => (

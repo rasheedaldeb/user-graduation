@@ -73,6 +73,14 @@ const NavBar = () => {
                   الشكاوي
                 </Link>
               </li>
+              <li>
+                <Link
+                  to="/reserved-posts"
+                  className="border-secondary text-secondary pb-1 text-xl font-bold transition duration-500 hover:text-gray-300"
+                >
+                  الحجوزات
+                </Link>
+              </li>
             </>
           )}
         </ul>

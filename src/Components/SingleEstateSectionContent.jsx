@@ -13,10 +13,57 @@ const SingleEstateSectionContent = () => {
   const [addSuccess, setAddSuccess] = useState("");
   const [addError, setAddError] = useState("");
   const [added, setAdded] = useState(false);
+  // reserve states
+  const [isReserving, setIsReserving] = useState(false);
+  const [reserveError, setReserveError] = useState("");
+  const [reserveSuccess, setReserveSuccess] = useState("");
   // fetch post details states
   const [postDetails, setPostDetails] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const [error, setError] = useState("");
+  // reserve post api request
+  const reservePost = async (id, type) => {
+    setIsReserving(true);
+    await axios
+      .post(
+        `${import.meta.env.VITE_API_URL}/api/reservation`,
+        {
+          postId: id,
+          type: type,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+      .then((res) => {
+        console.log(res);
+        setReserveSuccess(res.data.message);
+        setIsReserving(false);
+        setTimeout(() => {
+          setReserveSuccess("");
+          navigate("/");
+        }, 2000);
+      })
+      .catch((err) => {
+        console.log(err);
+        setReserveError(err.response.data.error);
+        setIsReserving(false);
+        setTimeout(() => {
+          setReserveError("");
+        }, 2000);
+        if (err.status === 401) {
+          alert(err.response.data.message);
+          localStorage.removeItem("token");
+          navigate("/signin");
+        }
+        if (err.message === "Network Error") {
+          setIsReserving(false);
+          setError("لايوجد اتصال بالانترنت");
+        }
+      });
+  };
   // post details api request
   useEffect(() => {
     const fetchPostDetails = async () => {
@@ -209,6 +256,16 @@ const SingleEstateSectionContent = () => {
                   {addError}
                 </div>
               )}
+              {reserveSuccess && (
+                <div className="flex items-center justify-center text-xl text-green-500">
+                  {reserveSuccess}
+                </div>
+              )}
+              {reserveError && (
+                <div className="flex items-center justify-center text-xl text-red-500">
+                  {reserveError}
+                </div>
+              )}
               <div className="button flex w-full flex-col gap-7">
                 <div className="flex w-full items-center justify-between">
                   <button
@@ -218,7 +275,6 @@ const SingleEstateSectionContent = () => {
                   >
                     دفع رعبون و حجز
                   </button>
-
                   <button
                     onClick={() => addToFavorite(item.id)}
                     type="button"
@@ -239,27 +295,28 @@ const SingleEstateSectionContent = () => {
                     )}
                   </button>
                 </div>
-                <form
-                  dir="rtl"
-                  className={`${openConfirm ? "flex" : "hidden"} flex-col gap-5`}
+                <div
+                  className={`${openConfirm ? "flex" : "hidden"} flex items-center justify-center`}
                 >
-                  <div className="flex flex-col gap-5">
-                    <label className="text-secondary text-xl">
-                      ادخل البريد الالكتروني
-                    </label>
-                    <input
-                      type="text"
-                      className="border-primary w-full rounded-3xl border px-3 py-2 outline-none"
-                      placeholder="البريد الالكتروني"
-                      required
-                    />
-                  </div>
-                  <div className="flex items-center justify-center">
-                    <button className="bg-primary mx-auto block cursor-pointer rounded-3xl border-white px-6 py-3 tracking-wider text-white">
-                      تأكيد
-                    </button>
-                  </div>
-                </form>
+                  <button
+                    onClick={() => reservePost(item.id, item.type)}
+                    className="bg-primary mx-auto block cursor-pointer rounded-3xl border-white px-6 py-3 tracking-wider text-white"
+                  >
+                    {isReserving ? (
+                      <Oval
+                        visible={true}
+                        height="30"
+                        width="30"
+                        color="#fff"
+                        ariaLabel="oval-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                      />
+                    ) : (
+                      "تأكيد"
+                    )}
+                  </button>
+                </div>
               </div>
             </section>
           ))}
