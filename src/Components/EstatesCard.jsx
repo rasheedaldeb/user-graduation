@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const EstatesCard = ({ postItem }) => {
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+    <div className="flex w-full flex-col gap-20 rounded-lg border border-gray-200 bg-white p-3 shadow-sm dark:bg-gray-800">
       <div className="company flex items-center justify-between">
         <img src="/images/user.png" alt="company" />
         <Link

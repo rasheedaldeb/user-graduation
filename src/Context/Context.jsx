@@ -4,6 +4,7 @@ const StatesContext = createContext();
 
 const ContextProvider = ({ children }) => {
   const [postsType, setPostsType] = useState("all");
+  const [search, setSearch] = useState("");
   const [selectValue, setSelectValue] = useState("");
   const [companyWebsite, setCompanyWebsite] = useState("");
   const [removed, setRemoved] = useState(false);
@@ -18,6 +19,8 @@ const ContextProvider = ({ children }) => {
         setCompanyWebsite,
         removed,
         setRemoved,
+        search,
+        setSearch,
       }}
     >
       {children}

@@ -1,11 +1,13 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Oval } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
+import { StatesContext } from "../Context/Context";
 const NavBar = () => {
   const token = localStorage.getItem("token");
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const navigate = useNavigate();
+  const { setSearch } = useContext(StatesContext);
   // logout api request
   const logout = async () => {
     setIsLoggingOut(true);
@@ -89,7 +91,8 @@ const NavBar = () => {
         <input
           type="text"
           className="bg-primary w-[500px] rounded-3xl px-4 py-3 text-lg text-white transition-all outline-none"
-          placeholder="بحث"
+          placeholder="ابحث عن اسم الشركة"
+          onChange={(e) => setSearch(e.target.value)}
         />
       )}
       {token ? (

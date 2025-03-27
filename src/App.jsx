@@ -15,8 +15,8 @@ import { ContextProvider } from "./Context/Context";
 function App() {
   return (
     <>
-      <NavBar />
       <ContextProvider>
+        <NavBar />
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/signin" element={<SignIn />} />

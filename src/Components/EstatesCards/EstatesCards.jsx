@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import EstatesCard from "../EstatesCard";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import "./EstatesCards.css";
 // Import Swiper React components
@@ -11,7 +11,19 @@ import "swiper/css/navigation";
 // import required modules
 import { Navigation } from "swiper/modules";
 import { Oval } from "react-loader-spinner";
+import { usePostFilter } from "../../Hooks/FilterCustomHook";
+import { StatesContext } from "../../Context/Context";
 const EstatesCards = () => {
+  const { search } = useContext(StatesContext);
+  const {
+    searchParams,
+    type,
+    salePriceMax,
+    location,
+    area,
+    landAreaMax,
+    buildingAreaMax,
+  } = usePostFilter();
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   // fetch all posts states
@@ -24,7 +36,7 @@ const EstatesCards = () => {
       setIsFetching(true);
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/post`,
+          `${import.meta.env.VITE_API_URL}/api/post/filter?${type && `type=${type}`}&${salePriceMax && `salePriceMax=${salePriceMax}`}&${location && `location=${location}`}&${area && `area=${area}&${landAreaMax && `landAreaMax=${landAreaMax}&${buildingAreaMax && `buildingAreaMax=${buildingAreaMax}`}`}`} `,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -47,7 +59,7 @@ const EstatesCards = () => {
       }
     };
     fetchPosts();
-  }, []);
+  }, [searchParams]);
   return (
     <>
       {isFetching ? (
@@ -73,11 +85,15 @@ const EstatesCards = () => {
           dir="rtl"
         >
           {allPosts.length !== 0 ? (
-            allPosts.map((item) => (
-              <SwiperSlide>
-                <EstatesCard postItem={item} />
-              </SwiperSlide>
-            ))
+            allPosts
+              .filter((item) =>
+                item.Account.name.toLowerCase().includes(search),
+              )
+              .map((item) => (
+                <SwiperSlide>
+                  <EstatesCard postItem={item} />
+                </SwiperSlide>
+              ))
           ) : (
             <div className="flex items-center justify-center">
               <p className="text-secondary text-xl">لايوجد منشورات</p>

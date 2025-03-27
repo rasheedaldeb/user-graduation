@@ -11,7 +11,7 @@ const Estates = () => {
         <Filters />
         {/* categories and cards section */}
         <div className="flex w-[70%] flex-col gap-5">
-          <TypeButtons />
+          {/* <TypeButtons /> */}
           <EstatesCards />
         </div>
       </div>
