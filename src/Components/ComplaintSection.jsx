@@ -67,7 +67,9 @@ const ComplaintSection = () => {
         <div className="complaints max-h-screen overflow-y-scroll" dir="rtl">
           {myComplaints
             .filter((item) =>
-              item.Company.Account.name.toLowerCase().includes(inputValue),
+              item.Company.Account.name
+                .toLowerCase()
+                .includes(inputValue.toLowerCase()),
             )
             .map((item) => (
               <div className="complaint border-primary flex items-center justify-between border-b pb-3">
