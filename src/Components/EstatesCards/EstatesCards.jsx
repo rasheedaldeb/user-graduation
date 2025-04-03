@@ -86,8 +86,13 @@ const EstatesCards = () => {
         >
           {allPosts.length !== 0 ? (
             allPosts
-              .filter((item) =>
-                item.Account.name.toLowerCase().includes(search.toLowerCase()),
+              .filter(
+                (item) =>
+                  item.Account &&
+                  item.Account.name &&
+                  item.Account.name
+                    .toLowerCase()
+                    .includes(search.toLowerCase()),
               )
               .map((item) => (
                 <SwiperSlide>
