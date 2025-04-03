@@ -15,15 +15,7 @@ import { usePostFilter } from "../../Hooks/FilterCustomHook";
 import { StatesContext } from "../../Context/Context";
 const EstatesCards = () => {
   const { search } = useContext(StatesContext);
-  const {
-    searchParams,
-    type,
-    salePriceMax,
-    location,
-    area,
-    landAreaMax,
-    buildingAreaMax,
-  } = usePostFilter();
+  const { searchParams } = usePostFilter();
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   // fetch all posts states
@@ -36,7 +28,7 @@ const EstatesCards = () => {
       setIsFetching(true);
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/post/filter?${type && `type=${type}`}&${salePriceMax && `salePriceMax=${salePriceMax}`}&${location && `location=${location}`}&${area && `area=${area}&${landAreaMax && `landAreaMax=${landAreaMax}&${buildingAreaMax && `buildingAreaMax=${buildingAreaMax}`}`}`} `,
+          `${import.meta.env.VITE_API_URL}/api/post/filter?${searchParams.toString()} `,
           {
             headers: {
               Authorization: `Bearer ${token}`,
