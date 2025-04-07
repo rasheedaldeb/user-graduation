@@ -1,0 +1,8 @@
+.mySwiper .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+.mySwiper2 .swiper-wrapper {
+  display: flex !important;
+  align-items: center !important;
+}
