@@ -97,15 +97,21 @@ const AboutCompany_SocialMedia = () => {
           <div className="about-us w-full">
             <div className="border-primary flex w-full flex-col items-center gap-5 border-b pb-5">
               <h4 className="text-secondary text-xl">وصف الشركة</h4>
-              <p className="text-secondary text-lg">{item.description}</p>
+              <p className="text-secondary text-lg">
+                {item.description && item.description}
+              </p>
             </div>
             <div className="border-primary flex w-full flex-col items-center gap-5 border-b pb-5">
               <h4 className="text-secondary text-xl">هدف الشركة</h4>
-              <p className="text-secondary text-lg">{item.mission}</p>
+              <p className="text-secondary text-lg">
+                {item.mission && item.mission}
+              </p>
             </div>
             <div className="border-primary flex w-full flex-col items-center gap-5 border-b pb-5">
               <h4 className="text-secondary text-xl">رؤية الشركة</h4>
-              <p className="text-secondary text-lg">{item.vision}</p>
+              <p className="text-secondary text-lg">
+                {item.vision && item.vision}
+              </p>
             </div>
           </div>
         ))

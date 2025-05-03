@@ -105,7 +105,7 @@ const ProfileSection = () => {
             {/* user image and name */}
             <div className="top flex w-full flex-col items-center border-b border-white py-5">
               <img
-                src={`https://real-estate-app-i5m8.onrender.com${userProfileData.profileImageUrl}`}
+                src={`${import.meta.env.VITE_API_URL}${userProfileData.profileImageUrl}`}
                 alt="avatar"
                 className="h-[150px] w-[150px] rounded-full border border-gray-200 p-3"
               />

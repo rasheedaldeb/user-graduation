@@ -12,12 +12,16 @@ const EstatesCard = ({ postItem }) => {
           {postItem.Account.name}
         </Link>
       </div>
-      <div className="h-56 w-full">
-        <img
-          className="mx-auto h-full dark:hidden"
-          src={`${import.meta.env.VITE_API_URL}${postItem.mainImageUrl}`}
-          alt="postImg"
-        />
+      <div className="flex h-56 w-full items-center justify-center">
+        {postItem.mainImageUrl ? (
+          <img
+            className="mx-auto h-full dark:hidden"
+            src={`${import.meta.env.VITE_API_URL}${postItem.mainImageUrl}`}
+            alt="postImg"
+          />
+        ) : (
+          <h4 className="text-primary text-xl">لا يوجد صورة</h4>
+        )}
       </div>
       <div className="pt-6">
         <div className="mt-4 flex items-center justify-between gap-4">
