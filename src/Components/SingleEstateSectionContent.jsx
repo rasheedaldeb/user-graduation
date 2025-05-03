@@ -51,7 +51,7 @@ const SingleEstateSectionContent = () => {
       })
       .catch((err) => {
         console.log(err);
-        setReserveError(err.response.data.error);
+        setReserveError(err.response.data.message);
         setIsReserving(false);
         setTimeout(() => {
           setReserveError("");
