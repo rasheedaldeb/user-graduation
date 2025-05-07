@@ -187,15 +187,6 @@ const RegisterForm = () => {
             {success}
           </div>
         )}
-        {/* facebook & google buttons */}
-        <div className="flex items-center justify-center gap-3">
-          <button>
-            <img src="/images/facebook.png" alt="facebook" />
-          </button>
-          <button>
-            <img src="/images/google.png" alt="google" />
-          </button>
-        </div>
       </form>
     </section>
   );
