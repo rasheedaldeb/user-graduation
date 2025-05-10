@@ -92,7 +92,7 @@ const ReservedPostsSection = () => {
                       سعر الأيجار :
                     </h4>
                     <p className="text-secondary text-lg font-bold">
-                      {item.Post.salePrice}$
+                      {item.Post.rentPrice}$
                     </p>
                   </div>
                   <div className="price-sale flex items-start gap-2">
@@ -100,7 +100,7 @@ const ReservedPostsSection = () => {
                       سعر البيع :
                     </h4>
                     <p className="text-secondary text-lg font-bold">
-                      {item.Post.rentPrice}$
+                      {item.Post.salePrice}$
                     </p>
                   </div>
                 </div>
@@ -127,7 +127,7 @@ const ReservedPostsSection = () => {
           ))
         ) : (
           <div className="flex items-center justify-center">
-            <p className="text-secondary text-xl">لا يوجد منشورات</p>
+            <p className="text-secondary text-xl">لا يوجد حجوزات</p>
           </div>
         )}
         {error && (
