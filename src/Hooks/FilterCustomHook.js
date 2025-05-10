@@ -21,7 +21,7 @@ export function usePostFilter() {
         params.set("location", filters.location);
       }
       if (filters.area !== undefined) {
-        params.set("area", filters.area);
+        params.set("areaMax", filters.area);
       }
       if (filters.landAreaMax !== undefined) {
         params.set("landAreaMax", filters.landAreaMax);
